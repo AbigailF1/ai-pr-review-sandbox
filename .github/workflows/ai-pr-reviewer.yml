@@ -29,7 +29,7 @@ jobs:
           repository: AbigailF1/Ai-PR-reviewer
           path: tools
 
-      - name: Install dependencies
+      - name: Install dependency
         run: pip install requests
 
       - name: Debug secrets
