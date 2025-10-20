@@ -26,7 +26,7 @@ jobs:
       - name: Checkout AI reviewer tools
         uses: actions/checkout@v3
         with:
-          repository: BekLG/Ai-PR-reviewer
+          repository: AbigailF1/Ai-PR-reviewer
           path: tools
 
       - name: Install dependencies
@@ -37,11 +37,11 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-            if [ -z "$GEMINI_API_KEY" ]; then
-              echo "GEMINI_API_KEY is not set"
-            else
-              echo "GEMINI_API_KEY is set"
-            fi
+          if [ -z "$GEMINI_API_KEY" ]; then
+            echo "GEMINI_API_KEY is not set"
+          else
+            echo "GEMINI_API_KEY is set"
+          fi
 
       - name: Run AI reviewer
         env:
