@@ -16,7 +16,6 @@ jobs:
   run-review:
     runs-on: ubuntu-latest
     steps:
-      # Checkout PR branch (works even for forked repos)
       - name: Checkout PR branch
         uses: actions/checkout@v3
         with:
@@ -24,18 +23,26 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           submodules: false
 
-      # Checkout the shared AI reviewer repo into "tools"
       - name: Checkout AI reviewer tools
         uses: actions/checkout@v3
         with:
-          repository: BekLG/Ai-PR-reviewer
+          repository: AbigailF1/Ai-PR-reviewer
           path: tools
 
-      # Install Python dependencies
       - name: Install dependencies
         run: pip install requests
 
-      # Run the AI reviewer script
+      - name: Debug secrets
+        shell: bash
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -z "$GEMINI_API_KEY" ]; then
+            echo "GEMINI_API_KEY is not set"
+          else
+            echo "GEMINI_API_KEY is set"
+          fi
+
       - name: Run AI reviewer
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
