@@ -29,7 +29,7 @@ jobs:
           repository: AbigailF1/Ai-PR-reviewer
           path: tools
 
-      - name: Install dependencies
+      - name: Install dependency
         run: pip install requests
 
       - name: Debug secrets
@@ -43,7 +43,7 @@ jobs:
             echo "GEMINI_API_KEY is set"
           fi
 
-      - name: Run AI reviewer
+      - name: Run AI reviewers
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
